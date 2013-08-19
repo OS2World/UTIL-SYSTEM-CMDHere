@@ -1,0 +1,21 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+
+#include "cmdhere.ih"
+
+MENU IDM_CMDHERE_CMDSESSION
+BEGIN
+   SUBMENU "CmdHere", ID_OPENCOMMANDLINESESSION
+	BEGIN
+              MENUITEM "OS/2 windowed", ID_CLSOS2W
+              MENUITEM "OS/2 full screen", ID_CLSOS2FS
+              MENUITEM "DOS windowed", ID_CLDOSW
+              MENUITEM "DOS full screen", ID_CLDOSFS
+              MENUITEM "Settings ... ", ID_CMDHERESETTINGS
+              MENUITEM "About ... ", ID_CMDHEREABOUT
+	END
+END
+
+RCINCLUDE "myobjres.dlg"
+

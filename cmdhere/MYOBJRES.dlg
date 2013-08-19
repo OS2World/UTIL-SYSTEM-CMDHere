@@ -1,0 +1,122 @@
+#ifndef OS2_INCLUDED
+   #include <os2.h>
+#endif
+DLGINCLUDE 1 "F:\cmdhere\myobjres.h"
+
+DLGTEMPLATE 7950 LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Dialog Title", 7950, 51, 77, 221, 146, WS_VISIBLE
+    BEGIN
+        CTEXT           "Gary L. Robinson", 1510, 29, 107, 160, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "P.O. Box 359", 1511, 28, 99, 160, 9, DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "Christiansburg, OH  45389", 1512, 28, 92, 160, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "Internet : grobin@coax.net", 1514, 19, 79, 177, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "http://www.coax.net/people/grobin", 1901, 22, 52, 
+                        171, 8
+        CTEXT           "Web page for updates and betas :", 1902, 22, 60, 
+                        171, 8
+        CTEXT           "CmdHere ver. 1.12", 1904, 4, 126, 213, 11, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "14.Times New Roman"
+        CTEXT           "Internet : grobin@erinet.com", 1906, 20, 71, 176, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "Register today!", 101, 7, 26, 206, 26, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FF0000L
+                        PRESPARAMS PP_FONTNAMESIZE, "36.Times New Roman"
+        PUSHBUTTON      "~OK", 7951, 88, 11, 40, 14, BS_NOPOINTERFOCUS
+        LTEXT           "Only $10.00", 7953, 143, 14, 55, 8
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00007F7FL
+        LTEXT           "Only $10.00", 7952, 26, 14, 55, 8
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x007F7F00L
+        CTEXT           "Copyright (c) 1997 by Gary L. Robinson", 7954, 4, 
+                        120, 214, 8, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helvetica"
+        GROUPBOX        "", 7955, 5, 4, 210, 139
+    END
+END
+
+DLGTEMPLATE 6750 LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Dialog Title", 6750, 53, 54, 217, 132, WS_VISIBLE, 
+            FCF_NOBYTEALIGN
+    BEGIN
+        CTEXT           "Gary L. Robinson", 1510, 1, 85, 214, 9, DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "P.O. Box 359", 1511, 1, 77, 215, 9, DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "Christiansburg, OH  45389", 1512, 2, 70, 213, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "Internet : grobin@coax.net", 1514, 1, 57, 215, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        CTEXT           "http://www.coax.net/people/grobin", 1901, 1, 30, 
+                        214, 8
+        CTEXT           "Web page for updates and betas :", 1902, 1, 38, 215, 
+                        8
+        CTEXT           "CmdHere ver. 1.12", 1904, 1, 111, 213, 11, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "14.Times New Roman"
+        CTEXT           "Internet : grobin@erinet.com", 1906, 1, 49, 215, 9, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_FONTNAMESIZE, "10.Helvetica"
+        PUSHBUTTON      "~OK", 6751, 87, 11, 40, 14, BS_NOPOINTERFOCUS
+        CTEXT           "Build 130", 7954, 1, 98, 214, 8, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helvetica"
+        CTEXT           "Copyright (c) 1997 by Gary L. Robinson", 7851, 0, 
+                        105, 214, 8, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helvetica"
+        LTEXT           "Only $10.00", 7953, 29, 12, 55, 8
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00007F7FL
+        LTEXT           "Only $10.00", 6752, 139, 12, 55, 8
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00007F7FL
+        GROUPBOX        "", 6753, 8, 6, 202, 124
+    END
+END
+
+DLGTEMPLATE 8100 LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "CmdHere", 8100, 46, 52, 295, 142, NOT FS_DLGBORDER | FS_BORDER | 
+            WS_VISIBLE, FCF_TITLEBAR | FCF_NOBYTEALIGN
+    BEGIN
+        ENTRYFIELD      "", 8103, 60, 93, 82, 8, ES_MARGIN | WS_GROUP
+        ENTRYFIELD      "", 8104, 60, 80, 82, 8, ES_MARGIN
+        ENTRYFIELD      "", 8105, 60, 67, 82, 8, ES_MARGIN
+        ENTRYFIELD      "", 8106, 60, 54, 82, 8, ES_MARGIN
+        DEFPUSHBUTTON   "~OK", 8102, 126, 13, 40, 14, BS_NOPOINTERFOCUS
+        CTEXT           "Settings for CmdHere", 8140, 3, 112, 289, 22, 
+                        DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x000000FFL
+                        PRESPARAMS PP_FONTNAMESIZE, "20.Tms Rmn Bold"
+        LTEXT           "cmd. processor OS/2", 8141, 147, 91, 114, 8, 
+                        DT_BOTTOM
+        LTEXT           "cmd. processor DOS", 8143, 147, 65, 112, 8, 
+                        DT_BOTTOM
+        LTEXT           "arguments", 8142, 147, 78, 112, 8, DT_BOTTOM
+        LTEXT           "arguments", 8144, 147, 52, 116, 8, DT_BOTTOM
+        GROUPBOX        "", 8145, 6, 5, 283, 136
+        CTEXT           "Copyright (c) 1997 by Gary L. Robinson ", 8146, 9, 
+                        109, 276, 7, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "8.Helv"
+        ENTRYFIELD      "", 8107, 45, 36, 111, 8, ES_MARGIN | ES_UNREADABLE
+        LTEXT           "Registration code", 8147, 162, 34, 98, 8
+    END
+END

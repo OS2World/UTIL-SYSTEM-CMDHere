@@ -1,0 +1,548 @@
+
+// =====================================================================    
+//   CMDHERE.IDL - A WorkFrame/2* Quickstart WPS/SOM application             
+//
+//   Copyright (C) 1995 IBM Corporation                                       
+//                                                                            
+//       DISCLAIMER OF WARRANTIES.  The following [enclosed] code is          
+//       sample code created by IBM Corporation. This sample code is not      
+//       part of any standard or IBM product and is provided to you solely    
+//       for  the purpose of assisting you in the development of your         
+//       applications.  The code is provided "AS IS", without                 
+//       warranty of any kind.  IBM shall not be liable for any damages       
+//       arising out of your use of the sample code, even if they have been   
+//       advised of the possibility of such damages.                          
+// =====================================================================    
+
+// =====================================================================#
+//                                                                      # 
+//  CLASS: cmdherefolder                                                    # 
+//                                                                      # 
+//  CLASS HIERARCHY:                                                    # 
+//                                                                      # 
+//      SOMObject                                                       # 
+//        ÀÄÄ WPObject                                                  # 
+//              ÀÄÄ WPFileSystem                                        # 
+//                    ÀÄÄ cmdhere                                      # 
+//                                                                      # 
+//  DESCRIPTION:                                                        #
+//                                                                      #
+//  This is a generic WPS object class.  The object displays the name   #
+//  of any object dropped on it. If you select the "Select me" item     #
+//  from its pop-up menu, you will get online help on the object.       #
+//  You may use this application as a template for your own WPS objects.#
+//  Many of the usual methods are overridden.                           #
+//                                                                      #
+//  Instances of this class are Workplace Shell objects.                #
+//                                                                      # 
+// =====================================================================#
+
+#ifndef cmdhroot_idl
+#define cmdhroot_idl
+
+
+#include "wpdisk.idl"
+#include "wpfsys.idl"
+#include <somcls.idl>
+
+
+//# ================================================================== #
+//# Declaration section:                                               #
+//# Define any types, constants, and exception structures here.  The   #
+//# declarations defined here are not included in the binding files    #
+//# by the SOM compiler, and are thus private to the class.            #
+//# ================================================================== #
+
+
+
+//# ================================================================== #
+//# Interface declaration section:                                     #
+//# Describe the interfaces available to the class.  By default, all   #
+//# the interfaces defined in this section are public, and available   #
+//# to client programs.   These include any new methods defined for    #
+//# the class, as well as attributes.  Additional types, constants,    #
+//# and exception structures may also be defined in this section.      #
+//# The declarations defined here are passed to the language binding   #
+//# files except for parts enclosed in a  __PRIVATE__ #ifdef directive.#
+//# ================================================================== #
+
+interface M_cmdhroot;
+
+interface cmdhroot : WPDisk
+{
+
+   //# ================================================================== #
+   //# Interface Declaration Section:                                     #
+   //# Declare any new methods and attributes here.  Additional types,    #
+   //# constants, and exception structures may also be defined here.      #
+   //# By default, the declarations defined here are exported to the      #
+   //# binding files by the SOM compiler, and are thus public and         #
+   //# available to client programs.                                      #
+   //# ================================================================== #
+
+
+   //# ================================================================== #
+   //# Class attributes - data that can be used and manipulated by the    #
+   //# class's clients.  Declare any class attributes here.               #
+   //# ================================================================== #
+
+
+#ifdef __SOMIDL__
+  implementation {
+
+    //#============================================================================#
+    //# Release order -- specify the release order for any new methods, including  #
+    //#                  the _get and _set accessor methods for each attribute.    #
+    //#============================================================================#
+
+    //#   releaseorder:
+
+    //#============================================================================#
+    //# Class modifier statements
+    //#============================================================================#
+          externalstem = cmdhroot; 
+          local; 
+          externalprefix = cmdhrootX_; 
+          majorversion = 1; 
+          minorversion = 1; 
+          filestem = cmdhere;
+          metaclass = M_cmdhroot;
+          callstyle = oidl;
+
+
+    //# ================================================================== #
+    //# Passthru Statements:                                               #
+    //# Include any blocks of code that the SOM compiler should pass       #
+    //# verbatim to the binding files it generates.                        #
+    //# ================================================================== #
+    
+    passthru C_ih_before =  ""      //# Internal definitions for this object 
+   " /* PM and OS2 include directives */"
+   "   #define INCL_WIN"
+   "   #define INCL_DOS"
+   "   #define INCL_GPIBITMAPS"
+   "   #define INCL_DOSMODULEMGR"
+   "   #define INCL_DOSFILEMGR"
+   "   #include <os2.h>"
+   ""
+   " /* WPS include directives */"
+   "   #define INCL_WPCLASS"
+   "   #define INCL_WPFOLDER"
+   "   #include <pmwp.h>"
+   "   #include <wpfsys.h>"
+   "   #include <wpfolder.h>"
+   "   #include <wpdesk.h>"
+   "   #include <wpdataf.h>"
+   "   #include <wpobject.h>"
+   "   #include <wprootf.h>"
+   ""
+   " /* C include directives */"
+   "   #include <stdio.h>"
+   ""
+   " /* General constants */"
+   "   #define MY_SOMCLASSNAME             \"cmdherefolder\""
+   "   #define RESOURCE_MODULE             \"CMDHRES\""
+   "   #define CMDHROOT_ICON               \"CMDHROOT.ICO\"      /* Icon file */"
+   //# "   #define CMDHROOT_ICON               \"CMDHROOT.ICO\"      /* Icon file */"
+   "   #define THREAD_STACK_SIZE           8192"
+   "   #define BUFFERSIZE                  256"
+   ""
+   "/* Menu resource IDs */"
+   "   #define IDM_CMDHERE_CMDSESSION      (WPMENUID_USER + 311)"
+   "   #define ID_OPENCOMMANDLINESESSION  (WPMENUID_USER + 312)"
+   "   #define ID_CLSOS2W                          (WPMENUID_USER + 313)"
+   "   #define ID_CLSOS2FS                         (WPMENUID_USER + 314)"
+   "   #define ID_CLDOSW                          (WPMENUID_USER + 315)"
+   "   #define ID_CLDOSFS                         (WPMENUID_USER + 316)"
+   "   #define ID_CMDHERESETTINGS             (WPMENUID_USER + 317)"
+   "   #define ID_CMDHEREABOUT                (WPMENUID_USER + 318)"
+
+   ""
+   "/* CmdHere Bug Screen */"
+   "   #define ID_BUGSCREEN                    7950"
+   "   #define ID_BSOK                            7951"
+
+   ""
+   "/* CmdHere Settings Page */"
+   "   #define ID_SETPAGE                    8100"
+   "   #define ID_SPCANCEL                   8101"
+   "   #define ID_SPSAVE                      8102"
+   "   #define ID_SPOS2CMDPROC           8103"
+   "   #define ID_SPOS2CMDARGS           8104"
+   "   #define ID_SPDOSCMDPROC           8105"
+   "   #define ID_SPDOSCMDARGS           8106"
+
+
+   ""
+   //# "/* Icon resource IDs */"
+   //# "   #define IDI_MYICON                  5000"
+   ""
+   "/* Prototypes */"
+   "   MRESULT APIENTRY fnProdInfoWndProc (HWND, ULONG, MPARAM, MPARAM);"
+   "   int SOMprintf(const unsigned char*,...); ";
+
+
+
+    passthru C_h_before =  "";   //# Public definitions for this object  
+
+
+    //# ================================================================== #
+    //# Internal instance variables - data only used by the class's        #
+    //# methods and not by client programs or sublasses' methods.          #
+    //# ================================================================== #
+    PSZ pszMyRealName;            /* This object's real name */
+
+
+    //# ================================================================== #
+    //# Method modifiers                                                   #
+    //# ================================================================== #
+    wpModifyPopupMenu:  override;
+    wpMenuItemSelected: override;    
+
+    //# ================================================================== #
+    //# Attribute modifiers                                                #
+    //# ================================================================== #
+
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+
+
+//# ================================================================== #
+//# Metaclass section:                                                 #
+//# Describe the metaclass of My_Object.  A metaclass allows this      #
+//# object to define its own constructor, class methods, and data.     #
+//# ================================================================== #
+
+interface M_cmdhroot
+//# Comment for parent WPFileSystem:
+
+{
+
+  // New types -- Define OS/2 type names to the class interface
+  typedef unsigned long  HMODULE;
+  typedef unsigned long  HPOINTER;
+  typedef string         PSZ;
+
+  // New class methods
+  //# HMODULE clsGetResourceModule();
+
+  //# Class attributes
+  //# attribute HMODULE  hmodResource; //# Resource module handle for cmdhroot 
+  //# attribute HPOINTER hMyIcon;      //# Icon handle for cmdhroot            
+  //# attribute PSZ      pszMyTitle;   //# Title of this SOM object            
+
+
+#ifdef __SOMIDL__
+  implementation {
+
+    releaseorder: _get_hmodResource, _set_hmodResource;
+                  //# _get_hMyIcon, _set_hMyIcon,
+                  //# _get_pszMyTitle, _set_pszMyTitle,
+                  //# clsGetResourceModule;
+    
+
+    //# instance variables
+    //# HMODULE  hmodResource; //# Resource module handle for cmdhroot
+
+
+    //# Class Modifiers
+    externalstem = cmdhroot;
+    local; 
+    externalprefix = cmdhrootX_; 
+    functionprefix = cmdhrootC_; 
+    majorversion = 1; 
+    minorversion = 1; 
+    filestem = cmdhere;
+    callstyle = oidl;
+
+
+    //# Class method Modifiers
+    wpclsInitData:         override;
+    wpclsUnInitData:       override;
+    wpclsCreateDefaultTemplates:       override;
+
+
+
+    //# Attribute Modifiers.
+    //# pszMyTitle:   noget, noset;  //# Provide own get and set methods
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+#endif  /* cmdhroot_idl */
+
+//# *************************************************************
+//# *************************************************************
+//# *************************************************************
+//# *************************************************************
+
+#ifndef cmdherefolder_idl
+#define cmdherefolder_idl
+
+
+//# ================================================================= #
+//# Include directives section:                                       #
+//# Include the class interface definition file for this object's     #
+//# parent class, metaclass (if any), and any ancestor class for      #
+//# which this class overrides one or more of its methods.            #
+//# ================================================================= #
+#include "wpfsys.idl"
+#include <somcls.idl>
+#include "wpdisk.idl"
+#include "wprootf.idl"
+#include "wpfsys.idl"
+
+
+
+//# ================================================================== #
+//# Declaration section:                                               #
+//# Define any types, constants, and exception structures here.  The   #
+//# declarations defined here are not included in the binding files    #
+//# by the SOM compiler, and are thus private to the class.            #
+//# ================================================================== #
+
+
+
+//# ================================================================== #
+//# Interface declaration section:                                     #
+//# Describe the interfaces available to the class.  By default, all   #
+//# the interfaces defined in this section are public, and available   #
+//# to client programs.   These include any new methods defined for    #
+//# the class, as well as attributes.  Additional types, constants,    #
+//# and exception structures may also be defined in this section.      #
+//# The declarations defined here are passed to the language binding   #
+//# files except for parts enclosed in a  __PRIVATE__ #ifdef directive.#
+//# ================================================================== #
+
+interface M_cmdherefolder;
+
+interface cmdherefolder : WPFolder
+{
+
+   //# ================================================================== #
+   //# Interface Declaration Section:                                     #
+   //# Declare any new methods and attributes here.  Additional types,    #
+   //# constants, and exception structures may also be defined here.      #
+   //# By default, the declarations defined here are exported to the      #
+   //# binding files by the SOM compiler, and are thus public and         #
+   //# available to client programs.                                      #
+   //# ================================================================== #
+
+
+   //# ================================================================== #
+   //# Class attributes - data that can be used and manipulated by the    #
+   //# class's clients.  Declare any class attributes here.               #
+   //# ================================================================== #
+
+
+#ifdef __SOMIDL__
+  implementation {
+
+    //#============================================================================#
+    //# Release order -- specify the release order for any new methods, including  #
+    //#                  the _get and _set accessor methods for each attribute.    #
+    //#============================================================================#
+
+    //#   releaseorder:
+
+    //#============================================================================#
+    //# Class modifier statements
+    //#============================================================================#
+          externalstem = cmdhere; 
+          local; 
+          externalprefix = cmdherefolderX_; 
+          majorversion = 1; 
+          minorversion = 1; 
+          filestem = cmdhere;
+          metaclass = M_cmdherefolder;
+          callstyle = oidl;
+
+
+    //# ================================================================== #
+    //# Passthru Statements:                                               #
+    //# Include any blocks of code that the SOM compiler should pass       #
+    //# verbatim to the binding files it generates.                        #
+    //# ================================================================== #
+    
+    passthru C_ih_before =  ""      //# Internal definitions for this object 
+   " /* PM and OS2 include directives */"
+   "   #define INCL_WIN"
+   "   #define INCL_DOS"
+   "   #define INCL_DOSFILEMGR"
+   "   #define INCL_DOSERRORS"
+   "   #define INCL_GPIBITMAPS"
+   "   #define INCL_DOSMODULEMGR"
+   "   #define INCL_WININPUT"
+   "   #define INCL_DOSPROCESS"
+   "   #define INCL_WINWINDOWMGR"
+   "   #include <os2.h>"
+   "   #include <direct.h>"
+   ""
+   " /* WPS include directives */"
+   "   #define INCL_WPCLASS"
+   "   #define INCL_WPFOLDER"
+   "   #include <pmwp.h>"
+   "   #include <wpdesk.h>"
+   "   #include <wprootf.h>"
+   "   #include <wpdisk.h>"
+   "   #include <wpobject.h>"
+   "   #include <wpshadow.h>"
+   "   #include <wpdataf.h>"
+   "   #include <wptemps.h>"
+   "   #include <wppgm.h>"
+   ""
+   " /* C include directives */"
+   "   #include <stdio.h>"
+   "   #include <string.h>"
+   ""
+   " /* General constants */"
+   "   #define MY_SOMCLASSNAME             \"cmdherefolder\""
+   "   #define RESOURCE_MODULE             \"CMDHRES\""
+   "   #define CMDHERE_ICON               \"CMDHERE.ICO\"      /* Icon file */"
+   "   #define THREAD_STACK_SIZE           8192"
+   "   #define BUFFERSIZE                  256"
+   ""
+   "/* String resource IDs */"
+   "   #define IDS_BASE                    12000"
+   ""
+   "/* Menu resource IDs */"
+   "   #define IDM_CMDHERE_CMDSESSION      (WPMENUID_USER + 311)"
+   "   #define ID_OPENCOMMANDLINESESSION  (WPMENUID_USER + 312)"
+   "   #define ID_CLSOS2W                          (WPMENUID_USER + 313)"
+   "   #define ID_CLSOS2FS                         (WPMENUID_USER + 314)"
+   "   #define ID_CLDOSW                          (WPMENUID_USER + 315)"
+   "   #define ID_CLDOSFS                         (WPMENUID_USER + 316)"
+   "   #define ID_CMDHERESETTINGS             (WPMENUID_USER + 317)"
+   "   #define ID_CMDHEREABOUT                 (WPMENUID_USER + 318)"
+
+   ""
+   "/* CmdHere Bug Screen */"
+   "   #define ID_BUGSCREEN                    7950"
+   "   #define ID_BSOK                            7951"
+
+   "/* CmdHere About Screen */"
+   "   #define ID_ABOUTCMDHERE             6750"
+   "   #define ID_ABOUTOK                      6751"
+
+   ""
+   "/* CmdHere Settings Page */"
+   "   #define ID_SETPAGE                    8100"
+   "   #define ID_SPCANCEL                   8101"
+   "   #define ID_SPSAVE                      8102"
+   "   #define ID_SPOS2CMDPROC           8103"
+   "   #define ID_SPOS2CMDARGS           8104"
+   "   #define ID_SPDOSCMDPROC           8105"
+   "   #define ID_SPDOSCMDARGS           8106"
+   "   #define ID_SPRC                         8107"
+
+
+   "/* Product info dialog IDs */"
+   "   #define IDD_BASE                    14000"
+
+
+   ""
+   "/* Icon resource IDs */"
+   "   #define IDI_MYICON                  15000"
+
+   ""
+   "/* Prototypes */"
+   "   MRESULT APIENTRY fnProdInfoWndProc (HWND, ULONG, MPARAM, MPARAM);"
+   "   int SOMprintf(const unsigned char*,...); ";
+
+
+
+    passthru C_h_before =  "";   //# Public definitions for this object  
+
+
+    //# ================================================================== #
+    //# Internal instance variables - data only used by the class's        #
+    //# methods and not by client programs or sublasses' methods.          #
+    //# ================================================================== #
+    PSZ pszMyRealName;            /* This object's real name */
+
+
+    //# ================================================================== #
+    //# Method modifiers                                                   #
+    //# ================================================================== #
+    //# wpInitData:         override;
+    //#wpUnInitData:       override;
+    wpModifyPopupMenu:  override;
+    wpMenuItemSelected: override;    
+
+    //# ================================================================== #
+    //# Attribute modifiers                                                #
+    //# ================================================================== #
+
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+
+
+//# ================================================================== #
+//# Metaclass section:                                                 #
+//# Describe the metaclass of My_Object.  A metaclass allows this      #
+//# object to define its own constructor, class methods, and data.     #
+//# ================================================================== #
+
+interface M_cmdherefolder
+//# Comment for parent WPFolder:
+
+{
+
+  // New types -- Define OS/2 type names to the class interface
+  typedef unsigned long  HMODULE;
+  typedef unsigned long  HPOINTER;
+  typedef string         PSZ;
+
+  // New class methods
+  // HMODULE clsGetResourceModule();
+
+  //# Class attributes
+  attribute HMODULE  hmodResource; //# Resource module handle for cmdherefolder 
+  attribute HPOINTER hMyIcon;      //# Icon handle for cmdherefolder            
+  // attribute PSZ      pszMyTitle;   //# Title of this SOM object            
+
+
+#ifdef __SOMIDL__
+  implementation {
+
+    releaseorder: _get_hmodResource, _set_hmodResource,
+                  _get_hMyIcon, _set_hMyIcon;
+    
+
+    //# instance variables
+    //# HMODULE  hmodResource; 
+    
+
+    //# Class Modifiers
+    externalstem = cmdhere;
+    local; 
+    externalprefix = cmdherefolderX_; 
+    functionprefix = cmdherefolderC_; 
+    majorversion = 1; 
+    minorversion = 1; 
+    filestem = cmdhere;
+    callstyle = oidl;
+
+
+    //# Class method Modifiers
+    wpclsInitData:         override;
+    wpclsUnInitData:       override;
+    wpclsCreateDefaultTemplates:       override;
+
+
+
+    //# Attribute Modifiers.
+    // pszMyTitle:   noget, noset;  
+
+  };
+#endif /* __SOMIDL__ */
+};
+
+#endif  /* cmdherefolder_idl */

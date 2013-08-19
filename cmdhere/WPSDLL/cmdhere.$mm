@@ -1,0 +1,45 @@
+:TARGET.SUFFIXES
+:TARGET.SUFFIXES
+:DEPENDENCY..IDL .c .obj 
+:TARGET.all
+:DEPENDENCY.
+.\cmdhere.dll
+:RULE..IDL.c
+:ACTION.Compile::SOM Compiler
+:COMMAND.
+sc.exe -p -S65536 -C65536 -mnoint %s
+:RULE.{F:\cmdhere\WPSDLL}.IDL.c
+:ACTION.Compile::SOM Compiler
+:COMMAND.
+sc.exe -p -S65536 -C65536 -mnoint %s
+:RULE..c.obj
+:ACTION.Compile::C++ Compiler
+:COMMAND.
+icc.exe /Ss /Gm /Ge- /Ms /C %s
+:RULE.{F:\cmdhere\WPSDLL}.c.obj
+:ACTION.Compile::C++ Compiler
+:COMMAND.
+icc.exe /Ss /Gm /Ge- /Ms /C %s
+:TARGET..\cmdhere.dll
+:DEPENDENCY.
+.\CMDHERE.obj
+{$(LIB)}somtk.lib
+{$(LIB)}cmdhere.def
+cmdhere.mak
+:ACTION.Link::Linker
+:COMMAND.
+icc.exe @<<
+ /B" /st:655360 /noe"
+ /Fecmdhere.dll 
+ somtk.lib 
+ cmdhere.def
+ .\CMDHERE.obj
+<<
+:TARGET..\CMDHERE.c
+:DEPENDENCY.
+F:\cmdhere\WPSDLL\CMDHERE.IDL
+cmdhere.mak
+:TARGET..\CMDHERE.obj
+:DEPENDENCY.
+.\CMDHERE.c
+cmdhere.mak
